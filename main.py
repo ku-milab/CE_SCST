@@ -59,6 +59,8 @@ def main(tr_loader, val_loader, ts_loader, cv_i, log_file, loss_weight=None, Y_t
             pf_val = f1_val
             if float(pf_callback) < float(pf_val): patience, pf_callback = 0, float(pf_val)    # Reset
             else: patience += 1
+        else:
+            break
 
 
 # Data Load
@@ -107,4 +109,5 @@ for cv_i in range(args.range_start, args.range_end):
     writelog(log_file, f'Balanced Loss Weight Sum: {loss_weight_org.sum()}')
     tr_loader, val_loader, ts_loader = dataloader_form(X_tr, Y_tr_org, X_val, Y_val_org, X_ts, Y_ts_org)
     main(tr_loader, val_loader, ts_loader, cv_i, log_file, loss_weight_dict, Y_t=Y_t)
+
 
