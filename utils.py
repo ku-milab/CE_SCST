@@ -86,7 +86,7 @@ def downsample_to_100(x):
     return x
 
 ''' Dataset '''
-def idx_tr_val_split(x):    # TODO: when do we need seed?
+def idx_tr_val_split(x):    
     idx_all = np.random.RandomState(seed=961125).permutation(x)
     idx_val = idx_all[:int(x/cv)]    # num of int(x/cv)
     idx_tr = np.setdiff1d(idx_all, idx_val)

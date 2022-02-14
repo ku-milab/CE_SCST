@@ -18,9 +18,6 @@ import torch
 
 
 def main(tr_loader, val_loader, ts_loader, cv_i, log_file, loss_weight=None, Y_t=None):
-    '''
-    FE Feature Residual
-    '''
     # Record
     cache_pf, cache_y_hat = {}, {}
     cache_model_state_dict, cache_val, cache_ts = {}, {}, {}

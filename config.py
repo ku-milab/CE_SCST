@@ -56,15 +56,13 @@ if args.GPU:
     os.environ["CUDA_VISIBLE_DEVICES"] = gpu_idx
     print(gpu_idx)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-# CPU Directory: /home/jep/Desktop/Pycharm/Sleep/Performance
-# GPU Directory: /DataCommon/jphyo/Code/Sleep/Performance
 
 
 
 # Record File: All Contained in logger_dir
-if args.GPU: log_dir = f"/DataCommon/jphyo/Code/Sleep/Performance/{args.experiment_date}_{os.getcwd().split('/')[-1]}" \
+if args.GPU: log_dir = f".../Performance/{args.experiment_date}_{os.getcwd().split('/')[-1]}" \
                           f"/{args.experiment_time}_{args.characteristic}"
-else: log_dir = f"/home/jep/Desktop/Pycharm/Sleep/Performance/{args.experiment_date}_{os.getcwd().split('/')[-1]}" \
+else: log_dir = f".../Performance/{args.experiment_date}_{os.getcwd().split('/')[-1]}" \
                    f"/{args.experiment_time}_{args.characteristic}"
 if not os.path.exists(log_dir): os.makedirs(log_dir)
 
@@ -97,27 +95,14 @@ def set_seed(seed = 961125):
     random.seed(seed)
 
 
-## Performance Directory
-# CPU Directory: /home/jep/Desktop/Pycharm/Sleep/Performance
-# GPU Directory: /DataCommon/jphyo/Code/Sleep/Performance
-
-## Code Directory
-# CPU Directory: /home/jep/Desktop/Pycharm/Sleep/Experiments/RL/RL_torch
-# GPU Directory: /DataCommon/jphyo/Code/Sleep/Experiment
-
-''' Data Loader '''
-# CPU: "/home/jep/Documents/Dataset/Sleep/Sleep-edf"
-# GPU: "/DataCommon/jphyo/Dataset/Sleep-edf"
-
-
 # Data Info
 if args.data == 'Sleep-edf':
-    data_path = "/home/jep/Documents/Dataset/Sleep/Sleep-edf" if not args.GPU else "/DataCommon/jphyo/Dataset/Sleep-edf"
+    data_path = ".../Sleep-edf" if not args.GPU else ".../Sleep-edf"
     X_path_dict = {'embed': "/Sleep_Embedded", 'AE': "/Sleep_AE_per_modality_0.5HZ",
                   'raw': '/Sleep_Raw', 'epoch':'/Sleep_Epoch'}
     Y_path_dict = {'raw': '/Sleep_Raw', 'epoch': '/Sleep_Epoch'}
 if args.data == 'MASS':
-    data_path = "/home/jep/Documents/Dataset/Sleep/MASS/SS3" if not args.GPU else "/DataCommon/jphyo/Dataset/MASS/SS3"
+    data_path = ".../MASS/SS3" if not args.GPU else ".../MASS/SS3"
     X_path_dict = {'epoch': '/SS3_Epoch'}
     Y_path_dict = {'epoch': '/SS3_Epoch'}
 
