@@ -89,25 +89,6 @@ class Feature_Encoder(nn.Module):
         x = torch.cat((x_T, x_S), dim=-1)    # [B, L, F]
         return x
 
-class Supratak_Contextual_Encoder(nn.Module):
-    def __init__(self, f, h):
-        '''
-        Temporal Encoder [Qu et al., 2020]
-        Transformer
-        '''
-        super(Supratak_Contextual_Encoder, self).__init__()
-
-        self.ctx = nn.LSTM(f, h, num_layers=2, dropout=0.5, bidirectional=True)
-        self.linear = nn.Linear(f, h * 2)
-        self.dropout_1 = nn.Dropout()
-        self.dropout_2 = nn.Dropout()
-
-    def forward(self, x):    # [batch, length, feature]
-        x_, _ = self.ctx(x.transpose(0, 1))
-        x = self.dropout_1(x_.transpose(0, 1)) + self.linear(x)
-        x = self.dropout_2(x)
-        return x
-
 class BiLSTLM(nn.Module):
     def __init__(self, f, h):
         '''
