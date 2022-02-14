@@ -56,8 +56,6 @@ if args.GPU:
     os.environ["CUDA_VISIBLE_DEVICES"] = gpu_idx
     print(gpu_idx)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-# CPU Directory: /home/jep/Desktop/Pycharm/Sleep/Performance
-# GPU Directory: /DataCommon/jphyo/Code/Sleep/Performance
 
 
 
